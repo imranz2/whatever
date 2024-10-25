@@ -39,6 +39,7 @@ public class LinearEquationLogic {
         }
         System.out.println("");
         System.out.println("Thank you for using the slope calculator, goodbye!");
+        System.out.println("");
 
 
         return "";

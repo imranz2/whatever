@@ -61,7 +61,9 @@ public class LinearEquation {
        done = done + plug; */
         double done = slope() * x;
         done = done + yIntercept();
+        System.out.println("");
         return "(" + x + ", " + done + ")";
+
     }
 
 
