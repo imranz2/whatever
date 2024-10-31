@@ -37,6 +37,16 @@ public class LinearEquation {
 
 
     public String equation(){
+ /*       String str = "";
+        if (yIntercept() == 0){
+            return "y = " + (y2-y1)/(x2-x1) + "x";
+        }
+        if (slope() == 0 && yIntercept() == 0){
+            return "y = 0";
+        }
+        if ((x2-x1) < 0 && (y2-y1) < 0){
+            str = "y = " + Math.abs(y2-y1) + "/" + Math.abs(x2-x1) + "x ";
+        }
         if (x2-x1 == 0){
             return "y = " + (y2-y1);
         }
@@ -46,25 +56,41 @@ public class LinearEquation {
         if (y2-y1 == 0 && x2-x1 == 0) {
             return "y = 0";
         }
-        return "y= " + (y2-y1) + "/" + (x2-x1) + "x + " + yIntercept();
+        if ((y2-y1)/(x2-x1) == 1){
+            str =  "y = x " ;
+        }
+        if ((y2-y1)/(x2-x1) == -1){
+            str = "y = -x ";
+        }
+        if ((x2-x1) < 0){
+            return "y = -" + Math.abs(y2-y1) + "/" + Math.abs(x2-x1) + "x ";
+        }
+        if ((double)(y2-y1)/(x2-x1) % 1 == 0){
+            str = "y = " + (y2-y1)/(x2-x1) + "x ";
+        }
+        if (yIntercept() < 0){
+            str += "-" + Math.abs(yIntercept());
+        } else { */
+            return "y = " + (y2-y1) + "/" + (x2-x1) + "x + " + yIntercept();
+       /* } */
+       /* return str; */
     }
 
 
     public String coordinateForX(double x){
-   /*    int first = y2-y1;
-       int second = x2-x1;
-       double done = (double)first/second;
-       done = done * x;
-       double slope = (double) (y2 - y1) / (x2-x1);
-       double plug = y1 - slope*(x1);
-       plug = (double) Math.round(plug * 100) / 100;
-       done = done + plug; */
         double done = slope() * x;
         done = done + yIntercept();
         System.out.println("");
         return "(" + x + ", " + done + ")";
-
     }
 
-
+    public String lineInfo(){
+        String str = "";
+        str = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2+")\n";
+        str += "The equation of the line between these points is: " + equation() + "\n";
+        str += "The y-intercept of the line is: " + yIntercept() + "\n";
+        str += "The slope of this line is: " + slope() + "\n";
+        str += "The distance between the two points is: " + distance();
+        return str;
+    }
 }
