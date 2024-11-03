@@ -24,7 +24,8 @@ public class LinearEquation {
     public double yIntercept(){
         double slope = (double) (y2 - y1) / (x2-x1);
         double plug = y1 - slope*(x1);
-        plug = (double) Math.round(plug * 100) / 100;
+        plug = Math.round(plug * 100);
+        plug = (double)plug/100;
         return plug;
     }
 
@@ -32,48 +33,46 @@ public class LinearEquation {
     public double slope(){
         int first = y2-y1;
         int second = x2-x1;
-        return (double)first/second;
+        double slope = (double)first/second;
+        slope = Math.round(slope * 100);
+        slope = (double)slope/100;
+        return slope;
     }
 
+    public String equation() {
+        String str = "";
+        String yIntStr = "";
+        int theY = (y2 - y1);
+        int theX = (x2 - x1);
+        double slope = slope();
+        double yInt = yIntercept();
 
-    public String equation(){
- /*       String str = "";
-        if (yIntercept() == 0){
-            return "y = " + (y2-y1)/(x2-x1) + "x";
+        if (theX == 0) {
+            return "x = " + x1;  // Vertical line
         }
-        if (slope() == 0 && yIntercept() == 0){
-            return "y = 0";
+        if (theY == 0) {
+            return "y = " + Math.round(yInt * 100.0) / 100.0;  // Horizontal line, round yInt
         }
-        if ((x2-x1) < 0 && (y2-y1) < 0){
-            str = "y = " + Math.abs(y2-y1) + "/" + Math.abs(x2-x1) + "x ";
+        if (slope == 1) {
+            str = "y = x";
+        } else if (slope == -1) {
+            str = "y = -x";
+        } else if (theY % theX == 0) {
+            int wholeSlope = theY / theX;
+            str = "y = " + wholeSlope + "x";
+        } else {
+            if (theX < 0) {
+                theY = -theY;
+                theX = -theX;
+            }
+            str = "y = " + theY + "/" + theX + "x";
         }
-        if (x2-x1 == 0){
-            return "y = " + (y2-y1);
+        if (yInt < 0) {
+            yIntStr = " - " + Math.abs(Math.round(yInt * 100.0) / 100.0); // Round yInt
+        } else if (yInt > 0) {
+            yIntStr = " + " + Math.round(yInt * 100.0) / 100.0; // Round yInt
         }
-        if (y2-y1 == 0){
-            return "y = " + yIntercept();
-        }
-        if (y2-y1 == 0 && x2-x1 == 0) {
-            return "y = 0";
-        }
-        if ((y2-y1)/(x2-x1) == 1){
-            str =  "y = x " ;
-        }
-        if ((y2-y1)/(x2-x1) == -1){
-            str = "y = -x ";
-        }
-        if ((x2-x1) < 0){
-            return "y = -" + Math.abs(y2-y1) + "/" + Math.abs(x2-x1) + "x ";
-        }
-        if ((double)(y2-y1)/(x2-x1) % 1 == 0){
-            str = "y = " + (y2-y1)/(x2-x1) + "x ";
-        }
-        if (yIntercept() < 0){
-            str += "-" + Math.abs(yIntercept());
-        } else { */
-            return "y = " + (y2-y1) + "/" + (x2-x1) + "x + " + yIntercept();
-       /* } */
-       /* return str; */
+        return str + yIntStr;
     }
 
 
