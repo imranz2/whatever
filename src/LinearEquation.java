@@ -14,28 +14,22 @@ public class LinearEquation {
         double side1 = (double)y2-y1;
         double side2 = (double)x2-x1;
         double distance = Math.sqrt(Math.pow(side1, 2)+ Math.pow(side2, 2));
-        distance = (double) Math.round(distance * 100) / 100;
+        distance = roundedToHundredth(distance);
         return distance;
-
-
     }
-
 
     public double yIntercept(){
         double slope = (double) (y2 - y1) / (x2-x1);
         double plug = y1 - slope*(x1);
-        plug = Math.round(plug * 100);
-        plug = (double)plug/100;
+        plug = roundedToHundredth(plug);
         return plug;
     }
-
 
     public double slope(){
         int first = y2-y1;
         int second = x2-x1;
         double slope = (double)first/second;
-        slope = Math.round(slope * 100);
-        slope = (double)slope/100;
+        slope = roundedToHundredth(slope);
         return slope;
     }
 
@@ -48,10 +42,10 @@ public class LinearEquation {
         double yInt = yIntercept();
 
         if (theX == 0) {
-            return "x = " + x1;  // Vertical line
+            return "x = " + x1;
         }
         if (theY == 0) {
-            return "y = " + Math.round(yInt * 100.0) / 100.0;  // Horizontal line, round yInt
+            return "y = " + roundedToHundredth(yInt);
         }
         if (slope == 1) {
             str = "y = x";
@@ -68,9 +62,9 @@ public class LinearEquation {
             str = "y = " + theY + "/" + theX + "x";
         }
         if (yInt < 0) {
-            yIntStr = " - " + Math.abs(Math.round(yInt * 100.0) / 100.0); // Round yInt
+            yIntStr = " - " + Math.abs(roundedToHundredth(yInt));
         } else if (yInt > 0) {
-            yIntStr = " + " + Math.round(yInt * 100.0) / 100.0; // Round yInt
+            yIntStr = " + " + roundedToHundredth(yInt);
         }
         return str + yIntStr;
     }
@@ -91,5 +85,11 @@ public class LinearEquation {
         str += "The slope of this line is: " + slope() + "\n";
         str += "The distance between the two points is: " + distance();
         return str;
+    }
+
+    public double roundedToHundredth(double toRound){
+        toRound = Math.round(toRound * 100);
+        toRound = (double)toRound/100;
+        return toRound;
     }
 }
