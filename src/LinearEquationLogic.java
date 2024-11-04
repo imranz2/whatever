@@ -27,16 +27,20 @@ public class LinearEquationLogic {
                 System.out.print("Enter a value for x: ");
                 double somePoint = scan.nextDouble();
                 scan.nextLine();
-                System.out.println("");
                 System.out.println("The point on the line is " + LE.coordinateForX(somePoint));
             }
                 System.out.println("");
-                System.out.print("Would you like to enter another pair of coordinates? y/n: ");
-                String done = scan.nextLine();
-                quit = done;
+                quit = promptContinue(scan);
         }
         System.out.println("");
         System.out.println("Thank you for using the slope calculator, goodbye!");
         return "";
     }
+
+    private String promptContinue(Scanner scan){
+        System.out.print("Would you like to enter another pair of coordinates? y/n: ");
+        String done = scan.nextLine();
+        return done;
+    }
+
 }
